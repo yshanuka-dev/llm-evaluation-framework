@@ -1,0 +1,10 @@
+Build an LLM Evaluation Framework for a Real-World Business Application.
+
+Should chooses one application:
+	1.	HR Resume Screening
+	2.	Customer Support Chatbot
+	3.	AI Interview Evaluation
+	4.	Document Information Extraction
+	5.	Sinhala-English AI Assistant
+
+must independently design 50+ test cases, establish expected outputs, test an LLM, calculate quantitative metrics, identify failure patterns, and produce a final technical report.

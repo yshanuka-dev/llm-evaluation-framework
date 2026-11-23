@@ -1,0 +1,313 @@
+{
+  "benchmark_summary": {
+    "total_test_cases": 55,
+    "evaluated_models": [
+      "frontier_llm",
+      "mid_tier_llm",
+      "baseline_small_llm"
+    ]
+  },
+  "metrics": {
+    "frontier_llm": {
+      "total_test_cases": 55,
+      "json_schema_validity_rate": 1.0,
+      "global_composite_accuracy": 0.9953,
+      "total_hallucination_events": 0,
+      "field_summary": {
+        "invoice_number": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "invoice_date": {
+          "exact_match_rate": 0.9818,
+          "similarity_score": 0.9818
+        },
+        "due_date": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "vendor_name": {
+          "exact_match_rate": 0.9818,
+          "similarity_score": 0.9973
+        },
+        "currency": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "line_items": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "subtotal": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "tax_amount": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "total_amount": {
+          "exact_match_rate": 0.9818,
+          "similarity_score": 0.9818
+        }
+      },
+      "category_summary": {
+        "adversarial_edge_cases": {
+          "count": 7,
+          "accuracy": 0.9799
+        },
+        "complex_tables": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "informal_receipts": {
+          "count": 6,
+          "accuracy": 1.0
+        },
+        "international_multicurrency": {
+          "count": 8,
+          "accuracy": 0.985
+        },
+        "missing_optional_fields": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "ocr_noise": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "standard_clean": {
+          "count": 10,
+          "accuracy": 1.0
+        }
+      },
+      "difficulty_summary": {
+        "Easy": {
+          "count": 12,
+          "accuracy": 1.0
+        },
+        "Medium": {
+          "count": 21,
+          "accuracy": 1.0
+        },
+        "Hard": {
+          "count": 17,
+          "accuracy": 0.9929
+        },
+        "Adversarial": {
+          "count": 5,
+          "accuracy": 0.9719
+        }
+      }
+    },
+    "mid_tier_llm": {
+      "total_test_cases": 55,
+      "json_schema_validity_rate": 1.0,
+      "global_composite_accuracy": 0.9649,
+      "total_hallucination_events": 12,
+      "field_summary": {
+        "invoice_number": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "invoice_date": {
+          "exact_match_rate": 0.9636,
+          "similarity_score": 0.9636
+        },
+        "due_date": {
+          "exact_match_rate": 0.7636,
+          "similarity_score": 0.7636
+        },
+        "vendor_name": {
+          "exact_match_rate": 0.9636,
+          "similarity_score": 0.973
+        },
+        "currency": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "line_items": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "subtotal": {
+          "exact_match_rate": 0.9818,
+          "similarity_score": 0.9818
+        },
+        "tax_amount": {
+          "exact_match_rate": 1.0,
+          "similarity_score": 1.0
+        },
+        "total_amount": {
+          "exact_match_rate": 0.9455,
+          "similarity_score": 0.9455
+        }
+      },
+      "category_summary": {
+        "adversarial_edge_cases": {
+          "count": 7,
+          "accuracy": 0.9188
+        },
+        "complex_tables": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "informal_receipts": {
+          "count": 6,
+          "accuracy": 0.92
+        },
+        "international_multicurrency": {
+          "count": 8,
+          "accuracy": 0.95
+        },
+        "missing_optional_fields": {
+          "count": 8,
+          "accuracy": 0.94
+        },
+        "ocr_noise": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "standard_clean": {
+          "count": 10,
+          "accuracy": 1.0
+        }
+      },
+      "difficulty_summary": {
+        "Easy": {
+          "count": 12,
+          "accuracy": 0.9667
+        },
+        "Medium": {
+          "count": 21,
+          "accuracy": 0.9638
+        },
+        "Hard": {
+          "count": 17,
+          "accuracy": 0.9882
+        },
+        "Adversarial": {
+          "count": 5,
+          "accuracy": 0.8864
+        }
+      }
+    },
+    "baseline_small_llm": {
+      "total_test_cases": 55,
+      "json_schema_validity_rate": 0.9818,
+      "global_composite_accuracy": 0.888,
+      "total_hallucination_events": 13,
+      "field_summary": {
+        "invoice_number": {
+          "exact_match_rate": 0.9636,
+          "similarity_score": 0.9636
+        },
+        "invoice_date": {
+          "exact_match_rate": 0.9091,
+          "similarity_score": 0.9091
+        },
+        "due_date": {
+          "exact_match_rate": 0.7636,
+          "similarity_score": 0.7636
+        },
+        "vendor_name": {
+          "exact_match_rate": 0.7636,
+          "similarity_score": 0.8126
+        },
+        "currency": {
+          "exact_match_rate": 0.9091,
+          "similarity_score": 0.9091
+        },
+        "line_items": {
+          "exact_match_rate": 0.7455,
+          "similarity_score": 0.9255
+        },
+        "subtotal": {
+          "exact_match_rate": 0.9818,
+          "similarity_score": 0.9818
+        },
+        "tax_amount": {
+          "exact_match_rate": 0.9818,
+          "similarity_score": 0.9818
+        },
+        "total_amount": {
+          "exact_match_rate": 0.7636,
+          "similarity_score": 0.7636
+        }
+      },
+      "category_summary": {
+        "adversarial_edge_cases": {
+          "count": 7,
+          "accuracy": 0.7216
+        },
+        "complex_tables": {
+          "count": 8,
+          "accuracy": 0.9476
+        },
+        "informal_receipts": {
+          "count": 6,
+          "accuracy": 0.9067
+        },
+        "international_multicurrency": {
+          "count": 8,
+          "accuracy": 0.91
+        },
+        "missing_optional_fields": {
+          "count": 8,
+          "accuracy": 0.925
+        },
+        "ocr_noise": {
+          "count": 8,
+          "accuracy": 0.7757
+        },
+        "standard_clean": {
+          "count": 10,
+          "accuracy": 0.988
+        }
+      },
+      "difficulty_summary": {
+        "Easy": {
+          "count": 12,
+          "accuracy": 0.96
+        },
+        "Medium": {
+          "count": 21,
+          "accuracy": 0.9264
+        },
+        "Hard": {
+          "count": 17,
+          "accuracy": 0.8712
+        },
+        "Adversarial": {
+          "count": 5,
+          "accuracy": 0.6103
+        }
+      }
+    }
+  },
+  "failure_diagnostics": {
+    "frontier_llm": {
+      "DATE_NORMALIZATION_FAILURE": 1,
+      "MULTI_ENTITY_VENDOR_CONFUSION": 1,
+      "DECOY_VALUE_CONFUSION": 1
+    },
+    "mid_tier_llm": {
+      "HALLUCINATED_ABSENT_FIELD_DUE_DATE": 12,
+      "DATE_NORMALIZATION_FAILURE": 3,
+      "CURRENCY_COMMA_DECIMAL_ERROR": 2,
+      "MULTI_ENTITY_VENDOR_CONFUSION": 2,
+      "DECOY_VALUE_CONFUSION": 2
+    },
+    "baseline_small_llm": {
+      "LINE_ITEM_PARSING_ERROR": 13,
+      "HALLUCINATED_ABSENT_FIELD_DUE_DATE": 12,
+      "OCR_NOISE_CORRUPTION": 8,
+      "NUMERICAL_PRECISION_MISMATCH": 8,
+      "DATE_NORMALIZATION_FAILURE": 4,
+      "MULTI_ENTITY_VENDOR_CONFUSION": 4,
+      "DECOY_VALUE_CONFUSION": 4,
+      "HALLUCINATED_ABSENT_FIELD_INVOICE_NUMBER": 1,
+      "JSON_SYNTAX_OR_SCHEMA_VIOLATION": 1
+    }
+  }
+}
