@@ -27,28 +27,31 @@ class EvaluationVisualizer:
         
         models = list(multi_model_results.keys())
         model_display_names = {
-            "frontier_llm": "Frontier LLM (GPT-4o / Claude 3.5)",
-            "mid_tier_llm": "Mid-Tier LLM (Gemini Flash / Llama 70B)",
+            "gemini-2.5-flash": "Google Gemini 2.5 Flash (Live API)",
+            "live_gemini": "Google Gemini (Live API)",
+            "frontier_llm": "Frontier LLM (GPT-4o Benchmark)",
+            "mid_tier_llm": "Mid-Tier LLM Benchmark",
             "baseline_small_llm": "Baseline 7B LLM"
         }
 
-        fig, ax = plt.subplots(figsize=(12, 6))
+        fig, ax = plt.subplots(figsize=(13, 6))
         x = np.arange(len(categories))
-        width = 0.25
+        n_models = len(models)
+        width = min(0.22, 0.8 / n_models)
 
-        colors = ["#2563eb", "#10b981", "#f59e0b"]
+        colors = ["#2563eb", "#10b981", "#8b5cf6", "#f59e0b"]
         for idx, m in enumerate(models):
             accs = [multi_model_results[m]["category_summary"][c]["accuracy"] * 100 for c in categories]
-            offset = (idx - len(models)/2 + 0.5) * width
+            offset = (idx - n_models / 2 + 0.5) * width
             rects = ax.bar(x + offset, accs, width, label=model_display_names.get(m, m), color=colors[idx % len(colors)], alpha=0.9)
             # Add value labels on top of bars
             for rect in rects:
                 height = rect.get_height()
-                ax.annotate(f"{height:.1f}%",
+                ax.annotate(f"{height:.0f}%",
                             xy=(rect.get_x() + rect.get_width() / 2, height),
-                            xytext=(0, 3),  # 3 points vertical offset
+                            xytext=(0, 3),
                             textcoords="offset points",
-                            ha='center', va='bottom', fontsize=8, rotation=0)
+                            ha='center', va='bottom', fontsize=7.5, rotation=0)
 
         ax.set_ylabel("Extraction Accuracy (%)", fontsize=11, fontweight="bold")
         ax.set_title("LLM Information Extraction Benchmark - Accuracy by Document Category", fontsize=13, fontweight="bold", pad=15)
@@ -56,7 +59,7 @@ class EvaluationVisualizer:
         ax.set_xticklabels(cat_labels, rotation=15, ha="right", fontsize=9)
         ax.set_ylim(0, 115)
         ax.grid(axis='y', linestyle='--', alpha=0.3)
-        ax.legend(loc="upper right", framealpha=0.9)
+        ax.legend(loc="upper right", framealpha=0.9, fontsize=9)
 
         plt.tight_layout()
         cat_chart_path = os.path.join(output_dir, "accuracy_by_category.png")
@@ -65,10 +68,15 @@ class EvaluationVisualizer:
         generated_files.append(cat_chart_path)
 
         # 2. Failure Pattern Distribution Chart
-        # Aggregate failures for the mid-tier model
-        mid_tier_failures = multi_model_failures.get("mid_tier_llm", {}).get("failure_pattern_counts", {})
-        if mid_tier_failures:
-            top_patterns = list(mid_tier_failures.items())[:8]
+        # Use failures for the primary evaluated live model or mid-tier
+        primary_model = "gemini-2.5-flash" if "gemini-2.5-flash" in multi_model_failures else list(multi_model_failures.keys())[0]
+        model_failures = multi_model_failures.get(primary_model, {}).get("failure_pattern_counts", {})
+        if not model_failures and len(multi_model_failures) > 1:
+            primary_model = list(multi_model_failures.keys())[1]
+            model_failures = multi_model_failures.get(primary_model, {}).get("failure_pattern_counts", {})
+
+        if model_failures:
+            top_patterns = list(model_failures.items())[:8]
             pattern_names = [p[0].replace("_", " ").title() for p in top_patterns]
             pattern_vals = [p[1] for p in top_patterns]
 
@@ -78,8 +86,8 @@ class EvaluationVisualizer:
             ax.set_yticks(y_pos)
             ax.set_yticklabels(pattern_names, fontsize=9)
             ax.invert_yaxis()  # top-down
-            ax.set_xlabel("Incident Occurrences across 55 Test Cases", fontsize=10, fontweight="bold")
-            ax.set_title("Empirical Failure Pattern Distribution (Mid-Tier LLM)", fontsize=12, fontweight="bold", pad=15)
+            ax.set_xlabel(f"Incident Occurrences across 55 Test Cases ({model_display_names.get(primary_model, primary_model)})", fontsize=10, fontweight="bold")
+            ax.set_title(f"Empirical Failure Pattern Distribution: {model_display_names.get(primary_model, primary_model)}", fontsize=12, fontweight="bold", pad=15)
             ax.grid(axis='x', linestyle='--', alpha=0.3)
 
             for bar in bars:
